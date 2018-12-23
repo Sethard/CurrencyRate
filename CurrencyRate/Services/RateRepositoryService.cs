@@ -34,6 +34,9 @@ namespace CurrencyRate.Services
             using (var context = new CurrencyRateContext(_options))
             {
                 context.Database.EnsureCreated();
+                var lastCreated = context.CurrencyRates.OrderByDescending(x => x.CreationTimestamp).FirstOrDefault();
+                if (lastCreated != null && lastCreated.CreationTimestamp >= rate.ActiveFrom) return;
+
                 var rateEntity = _currencyRateConverter.Convert(rate);
                 context.CurrencyRates.Add(rateEntity);
 

@@ -11,7 +11,7 @@ namespace CurrencyRate.Converter
             {
                 BuyValue = source.BuyValue,
                 SellValue = source.SellValue,
-                CreationTimestamp = DateTime.Now
+                CreationTimestamp = source.ActiveFrom
             };
         }
     }
